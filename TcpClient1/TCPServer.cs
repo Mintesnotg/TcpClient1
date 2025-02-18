@@ -14,12 +14,6 @@ namespace TcpClientServer
     {
 
         private TcpListener server;
-
-
-        //public TCPServer()
-        //{
-                
-        //}
         public TCPServer(int port)
         {
 
@@ -45,7 +39,7 @@ namespace TcpClientServer
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
-                    ThreadPool.QueueUserWorkItem(HandleClient, client); // use concurrency 
+                    ThreadPool.QueueUserWorkItem(HandleClient, client); // using  concurrency 
 
                 }
             }
@@ -73,7 +67,7 @@ namespace TcpClientServer
 
                 string response = "Unknown Command";
 
-                switch (req.Trim().ToUpper())
+                switch (req.Trim().ToUpper()) // can allow lowercase
                 {
 
                     case "GET_TEMP":

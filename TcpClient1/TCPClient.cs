@@ -28,20 +28,20 @@ namespace TcpClient1
 
                 try
                 {
-                    Console.WriteLine("Enter command GET_TEMP/GET_STATUS/EXIT :- ");
+                    Console.WriteLine("Enter command GET_TEMP/GET_STATUS/EXIT :- "); // command 
                     string command = Console.ReadLine();
                     if (command.ToUpper() == "EXIT") break;
 
-                    using (TcpClient client = new TcpClient("127.0.0.1", 5000))
+                    using (TcpClient client = new TcpClient("127.0.0.1", 5000)) // server can listen localhost/
                     using (NetworkStream stream = client.GetStream())
                     {
                         byte[] commandBytes = Encoding.ASCII.GetBytes(command);
                         stream.Write(commandBytes, 0, commandBytes.Length);
 
                         byte[] buffer = new byte[1024];
-                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                        string response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine("Server Response: " + response);
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);  // send server request
+                        string response = Encoding.ASCII.GetString(buffer, 0, bytesRead); // get server response
+                        Console.WriteLine("Server Response: " + response); 
                     }
                 }
                 catch (Exception ex)
